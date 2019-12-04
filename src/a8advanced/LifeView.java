@@ -18,7 +18,7 @@ import a8advanced.TaskManager;
 
 public class LifeView extends JPanel implements SpotListener, ActionListener {
 	
-	private JSpotBoard _board;		/* SpotBoard playing area. */
+	private JSpotBoard _board;		
 	private JPanel utility_panel;
 	private JPanel side_panel;
 	private List<LifeViewListener> listeners;
@@ -139,6 +139,7 @@ public class LifeView extends JPanel implements SpotListener, ActionListener {
 		this.setFocusable(true);
 		this.grabFocus();
 	}
+	//resize board according to new dimensions
 	public void resizeBoard(int dimension) {
 		_dimension = dimension;
 		remove(_board);
@@ -148,6 +149,7 @@ public class LifeView extends JPanel implements SpotListener, ActionListener {
 		repaint();
 		_board.addSpotListener(this);
 	}
+	// fill board randomly
 	public void randomFill() {
 		clearDisplay();
 		for(Spot spot : _board) {
@@ -231,20 +233,19 @@ public class LifeView extends JPanel implements SpotListener, ActionListener {
 			}
 		}
 	}
-	
-	public void clearDisplay() {
+	// wipes display
+	public void clearDisplay() { 
 		for(Spot s : _board) {
 			s.setBackground(Color.WHITE);
 		}
 	}
-	
+	// toggle's spot fill
 	public void spotClicked(Spot spot) {
 		if (spot.getBackground()==Color.BLACK) spot.setBackground(Color.WHITE);
 		else spot.setBackground(Color.BLACK);
 	}
-	
+	// spot enter/exit has no function
 	public void spotEntered(Spot spot) {}
-	
 	public void spotExited(Spot spot) {}
 	
 	public void actionPerformed(ActionEvent e) {
